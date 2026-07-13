@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRAASA — 3ª Edição ✦ Atins, Lençóis Maranhenses</title>
+<meta name="description" content="A BRAASA chega à sua terceira edição. Música eletrônica nos Lençóis Maranhenses — SEX 17 JUL, 20H, Lar Doce Mar Cabana, Atins/MA. Ingresso antecipado R$ 50 no Pix.">
+<meta property="og:title" content="BRAASA — 3ª Edição ✦ Atins">
+<meta property="og:description" content="BRITOX ✦ LESSA B2B JOTA ✦ ALESSO (BR) — SEX 17 JUL · 20H · Lar Doce Mar Cabana, Atins/MA. Ingresso antecipado R$ 50 no Pix.">
+<meta property="og:image" content="assets/img/capa.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='38' fill='%23FF5A1F'/%3E%3Ccircle cx='50' cy='50' r='22' fill='%2304060D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04060D;
+  --bg-2:#080D18;
+  --ink:#F4F6FB;
+  --muted:#8B94A8;
+  --ember:#FF5A1F;
+  --ember-soft:#FF8A3D;
+  --line:rgba(244,246,251,.12);
+  --display:'Unbounded',sans-serif;
+  --body:'Space Grotesk',sans-serif;
+  --mono:'Space Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--ember);color:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+
+/* ---------- grain ---------- */
+.grain{
+  position:fixed;inset:-100%;z-index:9000;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 8s steps(10) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-8%)}30%{transform:translate(3%,-12%)}
+  50%{transform:translate(8%,4%)}70%{transform:translate(-9%,6%)}90%{transform:translate(4%,10%)}
+}
+
+/* ---------- loader ---------- */
+.loader{
+  position:fixed;inset:0;z-index:9999;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;
+  transition:opacity .7s ease,visibility .7s ease;
+}
+.loader.done{opacity:0;visibility:hidden}
+.loader img{width:min(52vw,260px);opacity:0;animation:pulseIn 1.4s ease forwards}
+.loader .spark{width:8px;height:8px;border-radius:50%;background:var(--ember);box-shadow:0 0 24px 6px rgba(255,90,31,.65);animation:sparkPulse 1.1s ease-in-out infinite}
+@keyframes pulseIn{to{opacity:1}}
+@keyframes sparkPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,4vw,48px);
+  background:linear-gradient(180deg,rgba(4,6,13,.92),rgba(4,6,13,0));
+  transition:background .3s ease;
+}
+.nav.scrolled{background:rgba(4,6,13,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav__logo img{height:20px;width:auto}
+.nav__links{display:flex;gap:28px;align-items:center}
+.nav__links a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  transition:color .2s ease;
+}
+.nav__links a:hover{color:var(--ember-soft)}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 26px;border:1px solid var(--ember);color:var(--ink);background:transparent;
+  transition:background .25s ease,color .25s ease,box-shadow .25s ease;cursor:pointer;
+}
+.btn:hover{background:var(--ember);color:var(--bg);box-shadow:0 0 42px rgba(255,90,31,.45)}
+.btn--solid{background:var(--ember);color:var(--bg);box-shadow:0 0 34px rgba(255,90,31,.35)}
+.btn--solid:hover{background:var(--ember-soft);border-color:var(--ember-soft);box-shadow:0 0 60px rgba(255,138,61,.55)}
+.btn svg{width:16px;height:16px;flex:none}
+.nav .btn{padding:11px 20px;font-size:11px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero__bg{position:absolute;inset:0}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;transform:scale(1.06);animation:heroDrift 14s ease-out forwards}
+@keyframes heroDrift{to{transform:scale(1)}}
+.hero__bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(4,6,13,.55) 0%,rgba(4,6,13,.08) 34%,rgba(4,6,13,.2) 62%,rgba(4,6,13,.96) 100%);
+}
+#sparks{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hero__content{position:relative;z-index:3;padding:0 clamp(20px,4vw,48px) 34px}
+.hero__meta{
+  font-family:var(--mono);font-size:clamp(11px,1.4vw,14px);letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink);display:flex;flex-wrap:wrap;gap:8px 0;align-items:center;margin-bottom:26px;
+}
+.hero__meta .sep{color:var(--ember);margin:0 14px}
+.hero__logo{width:min(92vw,1180px);height:auto;filter:drop-shadow(0 0 60px rgba(120,160,255,.25))}
+.hero__tag{
+  font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ember-soft);margin:20px 0 30px;
+}
+.hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:26px}
+.hero__ctas{display:flex;gap:14px;flex-wrap:wrap}
+.countdown{display:flex;gap:clamp(14px,3vw,34px);text-align:center}
+.countdown div span{display:block}
+.countdown .num{font-family:var(--display);font-weight:800;font-size:clamp(24px,4vw,44px);line-height:1;color:var(--ink)}
+.countdown .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.hero__scroll{
+  position:absolute;right:clamp(20px,4vw,48px);top:50%;z-index:3;
+  font-family:var(--mono);font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);
+  writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;
+}
+.hero__scroll::after{content:"";width:1px;height:56px;background:linear-gradient(180deg,var(--ember),transparent);animation:dropline 2s ease-in-out infinite}
+@keyframes dropline{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- marquee ---------- */
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;padding:18px 0;background:var(--bg);position:relative;z-index:4;
+}
+.marquee__track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.marquee span{
+  font-family:var(--display);font-weight:600;font-size:clamp(14px,1.8vw,20px);letter-spacing:.08em;
+  text-transform:uppercase;white-space:nowrap;padding-right:18px;color:var(--ink);
+}
+.marquee span i{font-style:normal;color:var(--ember);padding-left:18px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:clamp(90px,12vw,160px) clamp(20px,4vw,48px)}
+.sec__head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(40px,6vw,72px)}
+.sec__num{font-family:var(--mono);font-size:13px;color:var(--ember);letter-spacing:.2em}
+.sec__title{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(30px,6.5vw,84px);line-height:1.02;letter-spacing:.01em;
+}
+.wrap{max-width:1280px;margin:0 auto}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.65,.25,1),transform .9s cubic-bezier(.2,.65,.25,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.12s}
+.reveal[data-delay="2"]{transition-delay:.24s}
+.reveal[data-delay="3"]{transition-delay:.36s}
+
+/* ---------- manifesto ---------- */
+.manifesto .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,90px);align-items:center}
+.manifesto p.lead{
+  font-family:var(--body);font-weight:300;
+  font-size:clamp(22px,3.2vw,40px);line-height:1.35;letter-spacing:-.01em;
+}
+.manifesto p.lead em{font-style:normal;color:var(--ember-soft)}
+.manifesto .coords{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--muted);
+  margin-top:38px;display:flex;flex-direction:column;gap:6px;text-transform:uppercase;
+}
+.manifesto .coords b{color:var(--ink);font-weight:400}
+.frame{position:relative;overflow:hidden}
+.frame img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.65,.25,1)}
+.frame:hover img{transform:scale(1.045)}
+.frame--tall{aspect-ratio:3/4}
+.frame__tag{
+  position:absolute;left:14px;bottom:14px;z-index:2;
+  font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  background:rgba(4,6,13,.75);backdrop-filter:blur(6px);padding:8px 12px;color:var(--ink);
+}
+
+/* ---------- lineup ---------- */
+.lineup{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lineup__list{border-top:1px solid var(--line)}
+.act{
+  display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+  padding:clamp(26px,4vw,46px) 6px;border-bottom:1px solid var(--line);
+  position:relative;transition:padding .35s ease;cursor:default;
+}
+.act:hover{padding-left:22px}
+.act__name{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(30px,7.5vw,96px);line-height:1;letter-spacing:.005em;
+  transition:color .3s ease,text-shadow .3s ease;
+}
+.act:hover .act__name{color:var(--ember-soft);text-shadow:0 0 48px rgba(255,90,31,.4)}
+.act__name .b2b{color:var(--ember);font-weight:300;font-size:.55em;vertical-align:.18em;padding:0 .12em}
+.act__meta{font-family:var(--mono);font-size:clamp(10px,1.2vw,13px);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.lineup__foot{
+  margin-top:34px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.cursor-img{
+  position:fixed;z-index:800;width:250px;aspect-ratio:9/14;pointer-events:none;
+  opacity:0;transform:scale(.85) rotate(-3deg);transition:opacity .3s ease,transform .3s ease;
+  overflow:hidden;
+}
+.cursor-img img{width:100%;height:100%;object-fit:cover}
+.cursor-img.on{opacity:1;transform:scale(1) rotate(-3deg)}
+
+/* ---------- tickets ---------- */
+.tickets .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:stretch}
+.ticket-card{
+  border:1px solid var(--ember);padding:clamp(30px,4vw,52px);
+  display:flex;flex-direction:column;gap:26px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(700px 340px at 85% -10%,rgba(255,90,31,.16),transparent 60%),
+    var(--bg-2);
+  box-shadow:0 0 80px rgba(255,90,31,.12);
+}
+.ticket-card__lot{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ember-soft)}
+.ticket-card__price{font-family:var(--display);font-weight:900;font-size:clamp(64px,9vw,120px);line-height:.95}
+.ticket-card__price small{font-family:var(--mono);font-weight:400;font-size:clamp(14px,1.6vw,18px);letter-spacing:.14em;vertical-align:super}
+.ticket-card ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.ticket-card li{
+  font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  display:flex;gap:12px;align-items:center;
+}
+.ticket-card li svg{width:14px;height:14px;color:var(--ember);flex:none}
+.ticket-card .btn{justify-content:center}
+.ticket-note{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.tickets .frame{position:relative;min-height:520px}
+.tickets .frame img{position:absolute;inset:0;object-position:center 42%}
+
+/* ---------- transfer ---------- */
+.transfer{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.transfer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.transfer__info p{color:var(--muted);font-weight:300;font-size:clamp(17px,1.6vw,20px);max-width:52ch}
+.spec{border-top:1px solid var(--line);margin-top:34px}
+.spec__row{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding:18px 4px;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);letter-spacing:.16em;text-transform:uppercase;
+}
+.spec__row span:first-child{color:var(--muted)}
+.spec__row span:last-child{color:var(--ink);text-align:right}
+.spec__row .hl{color:var(--ember-soft)}
+.transfer .btn{margin-top:34px}
+
+/* ---------- playlist ---------- */
+.playlist{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.playlist .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.playlist__info p{color:var(--muted);font-weight:300;font-size:clamp(17px,1.6vw,20px);max-width:46ch;margin-bottom:34px}
+.playlist__info p strong{color:var(--ink)}
+.playlist__tag{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ember-soft);margin-bottom:18px;display:block}
+.playlist__embed iframe{display:block;width:100%;height:440px;border:0;border-radius:14px}
+
+/* ---------- partner logos ---------- */
+.partner-logo{height:clamp(64px,7vw,92px);width:auto;margin-bottom:28px}
+.foot__logos{display:flex;justify-content:center;align-items:center;gap:34px;margin-bottom:30px}
+.foot__logos img{height:66px;width:auto;margin:0}
+
+/* ---------- local ---------- */
+.local{padding-bottom:0}
+.local p.lead{
+  font-weight:300;font-size:clamp(20px,2.6vw,32px);line-height:1.4;max-width:34ch;color:var(--ink);
+}
+.local .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center;margin-bottom:clamp(60px,8vw,100px)}
+.local__banner{position:relative;overflow:hidden}
+.local__banner img{width:100%;height:auto}
+.local__banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,transparent 14%,transparent 86%,var(--bg) 100%)}
+
+/* ---------- final CTA ---------- */
+.final{text-align:center;padding:clamp(100px,14vw,180px) clamp(20px,4vw,48px)}
+.final h2{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(34px,8vw,110px);line-height:1.02;
+}
+.final h2 span{color:var(--ember);text-shadow:0 0 70px rgba(255,90,31,.5)}
+.final p{font-family:var(--mono);font-size:clamp(11px,1.4vw,14px);letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin:28px 0 44px}
+.final .btn{font-size:15px;padding:20px 44px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:44px clamp(20px,4vw,48px);text-align:center}
+.foot__partners{
+  font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);
+  display:flex;justify-content:center;flex-wrap:wrap;gap:10px 0;margin-bottom:26px;
+}
+.foot__partners i{font-style:normal;color:var(--ember);margin:0 16px}
+footer img{height:16px;margin:0 auto 22px;opacity:.9}
+.foot__credit{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.foot__credit a{color:var(--ember-soft)}
+
+/* ---------- sticky mobile CTA ---------- */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:950;display:none;
+  align-items:center;justify-content:space-between;gap:14px;
+  padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(4,6,13,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.65,.25,1);
+}
+.sticky-cta.show{transform:none}
+.sticky-cta__price{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sticky-cta__price b{display:block;color:var(--ink);font-size:16px;letter-spacing:.06em}
+.sticky-cta .btn{padding:12px 20px;font-size:11px;white-space:nowrap}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  .manifesto .wrap,.tickets .wrap,.transfer .wrap,.local .wrap,.playlist .wrap{grid-template-columns:1fr}
+  .tickets .frame{min-height:0;aspect-ratio:4/5}
+  .hero__scroll{display:none}
+  .cursor-img{display:none}
+}
+@media(max-width:720px){
+  .nav__links a{display:none}
+  .nav__links .btn{display:inline-flex}
+  .sticky-cta{display:flex}
+  .hero__row{flex-direction:column;align-items:flex-start}
+  .act{flex-direction:column;gap:8px;align-items:flex-start}
+  .act__meta{white-space:normal}
+  .hero__content{padding-bottom:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  #sparks{display:none}
+}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <img src="assets/img/logo.png" alt="">
+  <div class="spark"></div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top" aria-label="BRAASA — início">
+    <img src="assets/img/logo.png" alt="BRAASA">
+  </a>
+  <nav class="nav__links" aria-label="Navegação principal">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#lineup">Line up</a>
+    <a href="#ingresso">Ingresso</a>
+    <a href="#transfer">Transfer</a>
+    <a href="#playlist">Playlist</a>
+    <a href="#local">Local</a>
+    <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
+      Garantir ingresso
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__bg">
+    <img src="assets/img/hero-disco.jpg" alt="Pessoa com cabeça de globo espelhado boiando no mar à noite sob céu estrelado" fetchpriority="high">
+  </div>
+  <canvas id="sparks" aria-hidden="true"></canvas>
+  <div class="hero__content">
+    <p class="hero__meta reveal in">
+      SEX<span class="sep">✦</span>17 JUL<span class="sep">✦</span>20H<span class="sep">✦</span>LAR DOCE MAR CABANA<span class="sep">✦</span>ATINS — LENÇÓIS MARANHENSES/MA
+    </p>
+    <img class="hero__logo reveal in" src="assets/img/logo.png" alt="BRAASA">
+    <p class="hero__tag reveal in" data-delay="1">Terceira edição ✦ Música eletrônica na beira do mundo</p>
+    <div class="hero__row reveal in" data-delay="2">
+      <div class="hero__ctas">
+        <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
+          Ingresso — R$ 50
+        </a>
+        <a class="btn" href="#lineup">Ver line up</a>
+      </div>
+      <div class="countdown" id="countdown" aria-label="Contagem regressiva para a festa">
+        <div><span class="num" id="cd-d">00</span><span class="lbl">dias</span></div>
+        <div><span class="num" id="cd-h">00</span><span class="lbl">horas</span></div>
+        <div><span class="num" id="cd-m">00</span><span class="lbl">min</span></div>
+        <div><span class="num" id="cd-s">00</span><span class="lbl">seg</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marqueeTrack">
+    <span>BRAASA<i>✦</i></span><span>Terceira edição<i>✦</i></span><span>Atins — Lençóis Maranhenses<i>✦</i></span><span>Música eletrônica<i>✦</i></span><span>17 · Julho · 20H<i>✦</i></span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="sec manifesto" id="manifesto">
+  <div class="wrap">
+    <div>
+      <div class="sec__head reveal">
+        <span class="sec__num">01</span>
+        <h2 class="sec__title">Manifesto</h2>
+      </div>
+      <p class="lead reveal" data-delay="1">
+        A BRAASA chega à sua <em>terceira edição</em> consolidando um movimento que vem fortalecendo a cena da música eletrônica nos Lençóis Maranhenses. Mais que uma festa, somos um encontro de pessoas que acreditam na <em>música</em>, na <em>conexão</em> e na construção de uma identidade única para a nossa <em>pista</em>.
+      </p>
+      <div class="coords reveal" data-delay="2">
+        <span>LAT <b>-2.5674</b> ✦ LON <b>-42.7402</b></span>
+        <span>Atins ✦ Barreirinhas ✦ Maranhão ✦ Brasil</span>
+        <span>VOL. <b>03</b> ✦ EST. <b>2024</b></span>
+      </div>
+    </div>
+    <div class="frame frame--tall reveal" data-delay="1">
+      <img src="assets/img/manifesto.jpg" alt="Pessoa ajoelhada na beira do mar segurando um globo espelhado sob a Via Láctea" loading="lazy">
+      <span class="frame__tag">A pista é nossa ✦ BRAASA VOL.3</span>
+    </div>
+  </div>
+</section>
+
+<!-- LINE UP -->
+<section class="sec lineup" id="lineup">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num">02</span>
+      <h2 class="sec__title">Line up</h2>
+    </div>
+    <div class="lineup__list">
+      <div class="act reveal" data-cursor>
+        <h3 class="act__name">Britox</h3>
+        <span class="act__meta">DJ set ✦ Atins/MA</span>
+      </div>
+      <div class="act reveal" data-delay="1" data-cursor>
+        <h3 class="act__name">Lessa <span class="b2b">B2B</span> Jota</h3>
+        <span class="act__meta">B2B set ✦ pista em dobro</span>
+      </div>
+      <div class="act reveal" data-delay="2" data-cursor>
+        <h3 class="act__name">Alesso <span class="b2b">(BR)</span></h3>
+        <span class="act__meta">DJ set ✦ convidado</span>
+      </div>
+    </div>
+    <div class="lineup__foot reveal" data-delay="2">
+      <span>Ordem dos sets sujeita a alteração</span>
+      <span>SEX 17 JUL ✦ a partir das 20H</span>
+    </div>
+  </div>
+</section>
+<div class="cursor-img" id="cursorImg" aria-hidden="true"><img src="assets/img/djs.jpg" alt=""></div>
+
+<!-- INGRESSO -->
+<section class="sec tickets" id="ingresso">
+  <div class="wrap">
+    <div>
+      <div class="sec__head reveal">
+        <span class="sec__num">03</span>
+        <h2 class="sec__title">Ingresso</h2>
+      </div>
+      <div class="ticket-card reveal" data-delay="1">
+        <span class="ticket-card__lot">Lote antecipado ✦ via Pix</span>
+        <div class="ticket-card__price"><small>R$</small> 50</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pagamento antecipado no Pix</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Garantido direto pelo WhatsApp</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nome na lista ✦ sem fila</li>
+        </ul>
+        <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
+          Garantir pelo WhatsApp
+        </a>
+        <p class="ticket-note">✦ Valor promocional antecipado — garanta antes de esgotar</p>
+      </div>
+    </div>
+    <div class="frame reveal" data-delay="2">
+      <img src="assets/img/mirror.jpg" alt="Rosto e mão em mosaico espelhado rasgando o papel sob céu estrelado" loading="lazy">
+      <span class="frame__tag">BRAASA ✦ identidade da pista</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 2 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Britox<i>✦</i></span><span>Lessa B2B Jota<i>✦</i></span><span>Alesso (BR)<i>✦</i></span><span>Britox<i>✦</i></span><span>Lessa B2B Jota<i>✦</i></span><span>Alesso (BR)<i>✦</i></span><span>Britox<i>✦</i></span><span>Lessa B2B Jota<i>✦</i></span><span>Alesso (BR)<i>✦</i></span><span>Britox<i>✦</i></span><span>Lessa B2B Jota<i>✦</i></span><span>Alesso (BR)<i>✦</i></span>
+  </div>
+</div>
+
+<!-- TRANSFER -->
+<section class="sec transfer" id="transfer">
+  <div class="wrap">
+    <div class="frame frame--tall reveal">
+      <img src="assets/img/palm.jpg" alt="Palmeira com globo espelhado no lugar do coco sob céu estrelado" loading="lazy">
+      <span class="frame__tag">Rota Atins ✦ Explore Atins</span>
+    </div>
+    <div class="transfer__info">
+      <div class="sec__head reveal">
+        <span class="sec__num">04</span>
+        <h2 class="sec__title">Transfer</h2>
+      </div>
+      <img class="partner-logo reveal" src="assets/img/logo-explore.png" alt="Explore Atins — parceira oficial" loading="lazy">
+      <p class="reveal" data-delay="1">
+        A logística até a pista é com a <strong>Explore Atins</strong>, parceira oficial da BRAASA. Quadriciclos e carros na rota levam você até o Lar Doce Mar e trazem de volta — só cuidar da dança que o caminho é com a gente.
+      </p>
+      <div class="spec reveal" data-delay="2">
+        <div class="spec__row"><span>Operação</span><span>Explore Atins ✦ parceira oficial</span></div>
+        <div class="spec__row"><span>Valor</span><span class="hl">R$ 20 por pessoa</span></div>
+        <div class="spec__row"><span>Veículos</span><span>Quadriciclo ✦ Carro 4x4</span></div>
+        <div class="spec__row"><span>Rota</span><span>Atins ⇄ Lar Doce Mar Cabana</span></div>
+      </div>
+      <a class="btn reveal" data-delay="3" href="https://wa.me/5598986114876?text=Oi!%20Quero%20reservar%20o%20transfer%20da%20Explore%20Atins%20para%20a%20BRAASA%20(R%24%2020%20por%20pessoa)." target="_blank" rel="noopener">Reservar transfer</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYLIST -->
+<section class="sec playlist" id="playlist">
+  <div class="wrap">
+    <div class="playlist__info">
+      <div class="sec__head reveal">
+        <span class="sec__num">05</span>
+        <h2 class="sec__title">Playlist</h2>
+      </div>
+      <span class="playlist__tag reveal" data-delay="1">braasabr ✦ o aquecimento oficial</span>
+      <p class="reveal" data-delay="1">
+        O som que define a nossa pista já está tocando. Dá o play na <strong>braasabr</strong>, entra no clima e chega no Lar Doce Mar com a BRAASA correndo na veia.
+      </p>
+      <a class="btn reveal" data-delay="2" href="https://open.spotify.com/playlist/5GqDgT0OOBkVXocVGuexdo" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.5 17.31a.75.75 0 0 1-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 1 1-.33-1.46c4.57-1.05 8.5-.6 11.66 1.34.35.22.47.68.25 1.03zm1.47-3.27a.94.94 0 0 1-1.29.31c-3.23-1.98-8.15-2.56-11.97-1.4a.94.94 0 1 1-.55-1.79c4.37-1.33 9.8-.68 13.5 1.6.44.27.58.85.31 1.28zm.13-3.41C15.24 8.33 8.94 8.12 5.25 9.24a1.12 1.12 0 1 1-.65-2.15c4.24-1.28 11.28-1.03 15.72 1.6a1.12 1.12 0 0 1-1.22 1.94z"/></svg>
+        Seguir no Spotify
+      </a>
+    </div>
+    <div class="playlist__embed reveal" data-delay="2">
+      <iframe src="https://open.spotify.com/embed/playlist/5GqDgT0OOBkVXocVGuexdo?utm_source=generator&theme=0" title="Playlist braasabr no Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL -->
+<section class="sec local" id="local">
+  <div class="wrap">
+    <div>
+      <div class="sec__head reveal">
+        <span class="sec__num">06</span>
+        <h2 class="sec__title">O Local</h2>
+      </div>
+      <img class="partner-logo reveal" src="assets/img/logo-lardocemar.png" alt="Lar Doce Mar Cabana — Atins/MA" loading="lazy">
+      <p class="lead reveal" data-delay="1">
+        Lar Doce Mar Cabana, Atins — onde a duna encontra o mar e o céu não tem poste pra atrapalhar as estrelas. A pista mais isolada e mais bonita do Brasil.
+      </p>
+    </div>
+    <div class="spec reveal" data-delay="2">
+      <div class="spec__row"><span>Data</span><span>Sexta ✦ 17 de julho</span></div>
+      <div class="spec__row"><span>Abertura</span><span>20H</span></div>
+      <div class="spec__row"><span>Local</span><span>Lar Doce Mar Cabana ✦ Atins/MA</span></div>
+      <div class="spec__row"><span>Região</span><span>Lençóis Maranhenses</span></div>
+      <div class="spec__row"><span>Como chegar</span><span class="hl">Transfer Explore Atins ✦ R$ 20</span></div>
+    </div>
+  </div>
+  <div class="local__banner reveal">
+    <img src="assets/img/capa.jpg" alt="Arte oficial da BRAASA: globo espelhado no mar à noite e os quatro DJs do line up" loading="lazy">
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2 class="reveal">A pista é nossa.<br><span>Acende a BRAASA.</span></h2>
+  <p class="reveal" data-delay="1">SEX ✦ 17 JUL ✦ 20H ✦ Lar Doce Mar Cabana ✦ Atins/MA</p>
+  <a class="btn btn--solid reveal" data-delay="2" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
+    Garantir ingresso — R$ 50
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/img/logo.png" alt="BRAASA">
+  <div class="foot__logos">
+    <img src="assets/img/logo-lardocemar.png" alt="Lar Doce Mar Cabana" loading="lazy">
+    <img src="assets/img/logo-explore.png" alt="Explore Atins" loading="lazy">
+  </div>
+  <p class="foot__partners">Lar Doce Mar Cabana<i>✦</i>Explore Atins<i>✦</i>BRAASA VOL.3</p>
+  <p class="foot__credit">© 2026 BRAASA ✦ Atins — Lençóis Maranhenses ✦ site por <a href="https://instagram.com/digihook" target="_blank" rel="noopener">Digihook</a></p>
+</footer>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta__price">Lote antecipado ✦ Pix<b>R$ 50</b></div>
+  <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">Garantir ingresso</a>
+</div>
+
+<script>
+// Loader
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('done'),650);
+});
+
+// Nav scroll state
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)},{passive:true});
+
+// Marquee: duplicar trilhas para loop contínuo
+document.querySelectorAll('.marquee__track').forEach(t=>{t.innerHTML+=t.innerHTML;});
+
+// Countdown -> SEX 17 JUL 2026, 20H (horário de Atins, GMT-3)
+const target=new Date('2026-07-17T20:00:00-03:00').getTime();
+const pad=n=>String(Math.max(0,n)).padStart(2,'0');
+function tick(){
+  const d=target-Date.now();
+  document.getElementById('cd-d').textContent=pad(Math.floor(d/864e5));
+  document.getElementById('cd-h').textContent=pad(Math.floor(d/36e5)%24);
+  document.getElementById('cd-m').textContent=pad(Math.floor(d/6e4)%60);
+  document.getElementById('cd-s').textContent=pad(Math.floor(d/1e3)%60);
+}
+tick();setInterval(tick,1000);
+
+// Scroll reveals
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+// Sticky CTA mobile — aparece depois do hero
+const sticky=document.getElementById('stickyCta');
+const hero=document.querySelector('.hero');
+new IntersectionObserver(es=>{
+  sticky.classList.toggle('show',!es[0].isIntersecting);
+},{threshold:.08}).observe(hero);
+
+// Imagem flutuante no hover do line up (desktop)
+const cImg=document.getElementById('cursorImg');
+if(matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('[data-cursor]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cImg.classList.add('on'));
+    el.addEventListener('mouseleave',()=>cImg.classList.remove('on'));
+    el.addEventListener('mousemove',e=>{
+      cImg.style.left=(e.clientX+28)+'px';
+      cImg.style.top=(e.clientY-160)+'px';
+    });
+  });
+}
+
+// Fagulhas de brasa subindo no hero (canvas)
+const cv=document.getElementById('sparks');
+if(cv&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  const ctx=cv.getContext('2d');let W,H,parts=[];
+  function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}
+  size();addEventListener('resize',size,{passive:true});
+  function spawn(){
+    return{x:Math.random()*W,y:H+10,r:.6+Math.random()*1.8,
+      vy:.35+Math.random()*.9,vx:(Math.random()-.5)*.35,
+      a:.25+Math.random()*.55,hue:18+Math.random()*22,life:0};
+  }
+  for(let i=0;i<46;i++){const p=spawn();p.y=Math.random()*H;parts.push(p);}
+  (function draw(){
+    ctx.clearRect(0,0,W,H);
+    parts.forEach((p,i)=>{
+      p.y-=p.vy;p.x+=p.vx+Math.sin((p.life+=.02))*.2;
+      if(p.y<-12)parts[i]=spawn();
+      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);
+      g.addColorStop(0,`hsla(${p.hue},100%,62%,${p.a})`);
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r*4,0,7);ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  })();
+}
+</script>
+</body>
+</html>
