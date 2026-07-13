@@ -112,8 +112,12 @@ button{font:inherit;cursor:pointer}
 .hero__meta .sep{color:var(--ember);margin:0 14px}
 .hero__logo{width:min(92vw,1180px);height:auto;filter:drop-shadow(0 0 60px rgba(120,160,255,.25))}
 .hero__tag{
-  font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);letter-spacing:.3em;text-transform:uppercase;
+  display:inline-block;
+  font-family:var(--mono);font-weight:700;font-size:clamp(11px,1.3vw,13px);letter-spacing:.3em;text-transform:uppercase;
   color:var(--ember-soft);margin:20px 0 30px;
+  background:rgba(4,6,13,.72);backdrop-filter:blur(6px);
+  padding:10px 16px;border-left:2px solid var(--ember);
+  text-shadow:0 1px 12px rgba(4,6,13,.9);
 }
 .hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:26px}
 .hero__ctas{display:flex;gap:14px;flex-wrap:wrap}
@@ -212,17 +216,27 @@ section{position:relative}
 .cursor-img.on{opacity:1;transform:scale(1) rotate(-3deg)}
 
 /* ---------- tickets ---------- */
-.tickets .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:stretch}
+.tickets__grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(20px,2.5vw,36px);align-items:stretch}
 .ticket-card{
-  border:1px solid var(--ember);padding:clamp(30px,4vw,52px);
-  display:flex;flex-direction:column;gap:26px;position:relative;overflow:hidden;
+  border:1px solid var(--line);padding:clamp(26px,3vw,44px);
+  display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden;
+  background:var(--bg-2);
+}
+.ticket-card--full{
+  border-color:var(--ember);
   background:
-    radial-gradient(700px 340px at 85% -10%,rgba(255,90,31,.16),transparent 60%),
+    radial-gradient(700px 340px at 85% -10%,rgba(255,90,31,.18),transparent 60%),
     var(--bg-2);
-  box-shadow:0 0 80px rgba(255,90,31,.12);
+  box-shadow:0 0 80px rgba(255,90,31,.14);
+}
+.ticket-card__badge{
+  position:absolute;top:0;right:0;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  background:var(--ember);color:var(--bg);padding:8px 14px;
 }
 .ticket-card__lot{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ember-soft)}
-.ticket-card__price{font-family:var(--display);font-weight:900;font-size:clamp(64px,9vw,120px);line-height:.95}
+.ticket-card--full .ticket-card__lot{padding-right:130px}
+.ticket-card__price{font-family:var(--display);font-weight:900;font-size:clamp(56px,6vw,88px);line-height:.95}
 .ticket-card__price small{font-family:var(--mono);font-weight:400;font-size:clamp(14px,1.6vw,18px);letter-spacing:.14em;vertical-align:super}
 .ticket-card ul{list-style:none;display:flex;flex-direction:column;gap:12px}
 .ticket-card li{
@@ -230,9 +244,9 @@ section{position:relative}
   display:flex;gap:12px;align-items:center;
 }
 .ticket-card li svg{width:14px;height:14px;color:var(--ember);flex:none}
-.ticket-card .btn{justify-content:center}
+.ticket-card .btn{justify-content:center;margin-top:auto}
 .ticket-note{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
-.tickets .frame{position:relative;min-height:520px}
+.tickets .frame{position:relative;min-height:480px}
 .tickets .frame img{position:absolute;inset:0;object-position:center 42%}
 
 /* ---------- transfer ---------- */
@@ -309,7 +323,8 @@ footer img{height:16px;margin:0 auto 22px;opacity:.9}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  .manifesto .wrap,.tickets .wrap,.transfer .wrap,.local .wrap,.playlist .wrap{grid-template-columns:1fr}
+  .manifesto .wrap,.transfer .wrap,.local .wrap,.playlist .wrap{grid-template-columns:1fr}
+  .tickets__grid{grid-template-columns:1fr}
   .tickets .frame{min-height:0;aspect-ratio:4/5}
   .hero__scroll{display:none}
   .cursor-img{display:none}
@@ -375,7 +390,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offs
       <div class="hero__ctas">
         <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
-          Ingresso — R$ 50
+          Tickets
         </a>
         <a class="btn" href="#lineup">Ver line up</a>
       </div>
@@ -453,30 +468,46 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offs
 <!-- INGRESSO -->
 <section class="sec tickets" id="ingresso">
   <div class="wrap">
-    <div>
-      <div class="sec__head reveal">
-        <span class="sec__num">03</span>
-        <h2 class="sec__title">Ingresso</h2>
-      </div>
+    <div class="sec__head reveal">
+      <span class="sec__num">03</span>
+      <h2 class="sec__title">Ingresso</h2>
+    </div>
+    <div class="tickets__grid">
       <div class="ticket-card reveal" data-delay="1">
-        <span class="ticket-card__lot">Lote antecipado ✦ via Pix</span>
-        <div class="ticket-card__price"><small>R$</small> 50</div>
+        <span class="ticket-card__lot">Ingresso pista ✦ via Pix</span>
+        <div class="ticket-card__price"><small>R$</small> 50<small>,00</small></div>
+        <p class="ticket-note" style="margin-top:-14px">Somente ingresso ✦ transfer à parte</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pagamento antecipado no Pix</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Garantido direto pelo WhatsApp</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nome na lista ✦ sem fila</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Transfer à parte ✦ R$ 20 por trecho</li>
         </ul>
-        <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
+        <a class="btn" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20pista%20da%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
-          Garantir pelo WhatsApp
+          Garantir pista
         </a>
-        <p class="ticket-note">✦ Valor promocional antecipado — garanta antes de esgotar</p>
+      </div>
+      <div class="ticket-card ticket-card--full reveal" data-delay="2">
+        <span class="ticket-card__badge">Melhor escolha</span>
+        <span class="ticket-card__lot">Passaporte Full ✦ via Pix</span>
+        <div class="ticket-card__price"><small>R$</small> 80<small>,00</small></div>
+        <p class="ticket-note" style="margin-top:-14px">Ingresso + transfer de ida e volta ✦ economize R$ 10</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ingresso pista incluso</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Transfer ida + volta ✦ Explore Atins</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nome na lista ✦ lugar no veículo garantido</li>
+        </ul>
+        <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20o%20PASSAPORTE%20FULL%20da%20BRAASA%20%E2%80%94%20ingresso%20%2B%20transfer%20ida%20e%20volta%20(R%24%2080%20no%20Pix)." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
+          Garantir Passaporte Full
+        </a>
+      </div>
+      <div class="frame reveal" data-delay="3">
+        <img src="assets/img/mirror.jpg" alt="Rosto e mão em mosaico espelhado rasgando o papel sob céu estrelado" loading="lazy">
+        <span class="frame__tag">BRAASA ✦ identidade da pista</span>
       </div>
     </div>
-    <div class="frame reveal" data-delay="2">
-      <img src="assets/img/mirror.jpg" alt="Rosto e mão em mosaico espelhado rasgando o papel sob céu estrelado" loading="lazy">
-      <span class="frame__tag">BRAASA ✦ identidade da pista</span>
-    </div>
+    <p class="ticket-note reveal" data-delay="3" style="margin-top:26px">✦ Valores promocionais antecipados no Pix — garanta antes de esgotar ✦ Transfer operado pela Explore Atins</p>
   </div>
 </section>
 
@@ -501,15 +532,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offs
       </div>
       <img class="partner-logo reveal" src="assets/img/logo-explore.png" alt="Explore Atins — parceira oficial" loading="lazy">
       <p class="reveal" data-delay="1">
-        A logística até a pista é com a <strong>Explore Atins</strong>, parceira oficial da BRAASA. Quadriciclos e carros na rota levam você até o Lar Doce Mar e trazem de volta — só cuidar da dança que o caminho é com a gente.
+        A logística até a pista é com a <strong>Explore Atins</strong>, parceira oficial da BRAASA. Quadriciclos e carros na rota levam você até o Lar Doce Mar e trazem de volta — R$ 20 por pessoa em cada trecho, ou tudo incluso no <strong>Passaporte Full</strong>.
       </p>
       <div class="spec reveal" data-delay="2">
         <div class="spec__row"><span>Operação</span><span>Explore Atins ✦ parceira oficial</span></div>
-        <div class="spec__row"><span>Valor</span><span class="hl">R$ 20 por pessoa</span></div>
+        <div class="spec__row"><span>Ida</span><span class="hl">R$ 20 por pessoa</span></div>
+        <div class="spec__row"><span>Volta</span><span class="hl">R$ 20 por pessoa</span></div>
         <div class="spec__row"><span>Veículos</span><span>Quadriciclo ✦ Carro 4x4</span></div>
         <div class="spec__row"><span>Rota</span><span>Atins ⇄ Lar Doce Mar Cabana</span></div>
+        <div class="spec__row"><span>No Passaporte Full</span><span>Ida + volta inclusos ✦ R$ 80 com ingresso</span></div>
       </div>
-      <a class="btn reveal" data-delay="3" href="https://wa.me/5598986114876?text=Oi!%20Quero%20reservar%20o%20transfer%20da%20Explore%20Atins%20para%20a%20BRAASA%20(R%24%2020%20por%20pessoa)." target="_blank" rel="noopener">Reservar transfer</a>
+      <a class="btn reveal" data-delay="3" href="https://wa.me/5598986114876?text=Oi!%20Quero%20reservar%20o%20transfer%20da%20Explore%20Atins%20para%20a%20BRAASA%20(R%24%2020%20por%20pessoa%20em%20cada%20trecho)." target="_blank" rel="noopener">Reservar transfer</a>
     </div>
   </div>
 </section>
@@ -555,7 +588,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offs
       <div class="spec__row"><span>Abertura</span><span>20H</span></div>
       <div class="spec__row"><span>Local</span><span>Lar Doce Mar Cabana ✦ Atins/MA</span></div>
       <div class="spec__row"><span>Região</span><span>Lençóis Maranhenses</span></div>
-      <div class="spec__row"><span>Como chegar</span><span class="hl">Transfer Explore Atins ✦ R$ 20</span></div>
+      <div class="spec__row"><span>Como chegar</span><span class="hl">Transfer Explore Atins ✦ R$ 20 por trecho</span></div>
     </div>
   </div>
   <div class="local__banner reveal">
@@ -569,7 +602,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offs
   <p class="reveal" data-delay="1">SEX ✦ 17 JUL ✦ 20H ✦ Lar Doce Mar Cabana ✦ Atins/MA</p>
   <a class="btn btn--solid reveal" data-delay="2" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.15.24-3.88-.81-3.27-1.29-5.38-4.6-5.55-4.81-.16-.22-1.33-1.77-1.33-3.38 0-1.61.85-2.4 1.15-2.73.3-.33.65-.41.87-.41l.62.01c.2.01.47-.08.73.56.27.65.91 2.24.99 2.4.08.16.13.36.03.57-.11.22-.16.36-.32.55l-.48.57c-.16.16-.33.34-.14.66.19.33.85 1.4 1.82 2.27 1.25 1.11 2.3 1.46 2.63 1.62.33.16.52.14.71-.08.19-.22.81-.95 1.03-1.28.22-.33.44-.27.73-.16.3.11 1.9.9 2.23 1.06.33.16.54.24.62.38.08.14.08.79-.17 1.63z"/></svg>
-    Garantir ingresso — R$ 50
+    Garantir tickets
   </a>
 </section>
 
@@ -586,7 +619,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offs
 
 <!-- STICKY CTA MOBILE -->
 <div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta__price">Lote antecipado ✦ Pix<b>R$ 50</b></div>
+  <div class="sticky-cta__price">Pista R$ 50 ✦ Pix<b>Full R$ 80</b></div>
   <a class="btn btn--solid" href="https://wa.me/5598986114876?text=Oi!%20Quero%20garantir%20meu%20ingresso%20antecipado%20para%20a%20BRAASA%20%E2%80%94%203%C2%AA%20edi%C3%A7%C3%A3o%20(R%24%2050%20no%20Pix)." target="_blank" rel="noopener">Garantir ingresso</a>
 </div>
 
